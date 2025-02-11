@@ -10,10 +10,7 @@ use App\Models\Ticket;
 
 class TicketController extends Controller
 {
-    /**
-     * Summary of index
-     * @return \Illuminate\Database\Eloquent\Collection<int, Ticket>
-     */
+    
     public function index()
     {
         return TicketResource::collection(Ticket::paginate());

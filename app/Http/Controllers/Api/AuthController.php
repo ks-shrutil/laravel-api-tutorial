@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return $this->error('Invalid credentials', 401);
-         }
+        }
 
         return $this->ok(
         'Authenticated',
@@ -40,6 +40,11 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * Summary of logout
+     * @param \Illuminate\Http\Request $request
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
 
@@ -47,11 +52,5 @@ class AuthController extends Controller
     }
 
 
-    // /**
-    //  * Summary of register
-    //  * @return mixed|\Illuminate\Http\JsonResponse
-    //  */
-    // public function register(){
-    //     return $this->ok('register');
-    // }
+   
 }
