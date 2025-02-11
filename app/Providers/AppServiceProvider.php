@@ -14,6 +14,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Load API and Web routes
      */
+
+    /**
+     * Summary of loadRoutes
+     * @return void
+     */
     protected function loadRoutes(): void
     {
         Route::middleware('api')
