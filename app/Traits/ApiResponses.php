@@ -11,7 +11,7 @@ trait ApiResponses{
      * @param mixed $message
      * @return mixed|\Illuminate\Http\JsonResponse
      */
-    protected function ok($message, $data) {
+    protected function ok($message, $data=[]) {
         return $this->success($message, $data , 200);
     }
 
@@ -22,7 +22,7 @@ trait ApiResponses{
      * @param mixed $statusCode
      * @return mixed|\Illuminate\Http\JsonResponse
      */
-    protected function success($message, $data,  $statusCode = 200) {
+    protected function success($message, $data = [],  $statusCode = 200) {
         return response()->json([
             'data' => $data,
             'message' => $message,
