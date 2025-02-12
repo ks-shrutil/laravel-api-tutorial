@@ -19,15 +19,19 @@ class TicketFilter extends QueryFilter
     {
         return $this->builder->with($value);
     }
+
     public function status($value)
     {
         return $this->builder->whereIn('status', explode(',', $value));
     }
+
     public function title($value)
     {
         $likeStr = str_replace('*', '%', $value);
+
         return $this->builder->where('title', 'like', $likeStr);
     }
+
     public function updatedAt($value)
     {
         $dates = explode(',', $value);
