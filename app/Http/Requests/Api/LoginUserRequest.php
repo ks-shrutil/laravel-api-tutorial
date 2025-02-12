@@ -7,7 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 class LoginUserRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Undocumented function
+     *
+     * @return boolean
      */
     public function authorize(): bool
     {
@@ -15,8 +17,9 @@ class LoginUserRequest extends FormRequest
     }
 
     /**
-     * Summary of rules
-     * @return array{email: string[], password: string[]}
+     * Undocumented function
+     *
+     * @return array
      */
     public function rules(): array
     {

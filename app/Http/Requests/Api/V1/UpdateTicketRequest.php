@@ -7,7 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateTicketRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Undocumented function
+     *
+     * @return boolean
      */
     public function authorize(): bool
     {
@@ -15,9 +17,9 @@ class UpdateTicketRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Undocumented function
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
     public function rules(): array
     {

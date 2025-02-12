@@ -7,8 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 class LoginRequest extends FormRequest
 {
     /**
-     * Summary of authorize
-     * @return bool
+     * Undocumented function
+     *
+     * @return boolean
      */
     public function authorize(): bool
     {
@@ -16,9 +17,9 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Undocumented function
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
     public function rules(): array
     {

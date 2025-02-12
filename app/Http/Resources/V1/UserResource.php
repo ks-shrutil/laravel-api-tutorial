@@ -2,15 +2,16 @@
 
 namespace App\Http\Resources\V1;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Request;
 
 class UserResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Undocumented function
      *
-     * @return array<string, mixed>
+     * @param Request $request
+     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -21,13 +22,18 @@ class UserResource extends JsonResource
                 'name' => $this->name,
                 'email' => $this->email,
 
-                $this->mergeWhen( $request->routeIs('users.*'),[
+                $this->mergeWhen($request->routeIs('users.*'), [
                     'emailVerifiedAt' => $this->email_verified_at,
                     'createdAt' => $this->created_at,
                     'updatedAt' => $this->updated_at,
 
                 ])
+            ],
+
+            'include' => TicketResource::collection($this->whenLoaded('tickets')),
+            'links' => [
+                'self' => route('users.show',  ['user' => $this->id])
             ]
-       ];
+        ];
     }
 }

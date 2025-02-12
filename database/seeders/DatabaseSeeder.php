@@ -10,19 +10,16 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Undocumented function
+     *
+     * @return void
      */
     public function run(): void
     {
         $users = User::factory(10)->create();
 
         Ticket::factory(100)
-           ->recycle($users)
-           ->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+            ->recycle($users)
+            ->create();
     }
 }

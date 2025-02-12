@@ -16,11 +16,13 @@ class AuthController extends Controller
     use ApiResponses;
 
     /**
-     * Summary of login
-     * @param \App\Http\Requests\Api\LoginUserRequest $request
-     * @return mixed|\Illuminate\Http\JsonResponse
+     * Undocumented function
+     *
+     * @param LoginUserRequest $request
+     * @return void
      */
-    public function login(LoginUserRequest $request) {
+    public function login(LoginUserRequest $request)
+    {
         $request->validated($request->all());
 
         $user = User::where('email', $request->email)->first();
@@ -30,27 +32,28 @@ class AuthController extends Controller
         }
 
         return $this->ok(
-        'Authenticated',
-        [
-            'token' => $user->createToken('API token for ' . $user->email,
-            ['*'],
-            now()->addMonth())->plainTextToken
-        ]
+            'Authenticated',
+            [
+                'token' => $user->createToken(
+                    'API token for ' . $user->email,
+                    ['*'],
+                    now()->addMonth()
+                )->plainTextToken
+            ]
         );
     }
 
 
     /**
-     * Summary of logout
-     * @param \Illuminate\Http\Request $request
-     * @return mixed|\Illuminate\Http\JsonResponse
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
      */
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete();
 
         return $this->ok('');
     }
-
-
-   
 }

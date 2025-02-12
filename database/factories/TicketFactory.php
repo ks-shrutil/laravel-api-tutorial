@@ -2,18 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ticket>
- */
 class TicketFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Undocumented function
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function definition(): array
     {
