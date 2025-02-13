@@ -5,7 +5,7 @@ namespace App\Http\Requests\Api\V1;
 use Illuminate\Foundation\Http\FormRequest;
 use PhpParser\Node\Expr\FuncCall;
 
-class ReplaceTicketRequest extends FormRequest
+class ReplaceTicketRequest extends BaseTicketRequest
 {
 
     public function authorize(): bool
@@ -27,24 +27,11 @@ class ReplaceTicketRequest extends FormRequest
             'data.relationships.author.data.id' => 'required|integer'
         ];
 
-        if ($this->routeIs('tickets.store')) {
-            $rules['data.relationships.author.data.id'] = 'required|integer';
-        }
 
         return $rules;
     }
 
 
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function messages()
-    {
-        return [
-            'data.attributes.status' => 'The data.attributes.status value is invalid. Please use A, C, H, or X.'
-        ];
-    }
+ 
 }
