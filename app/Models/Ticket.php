@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Filters\V1\QueryFilter;
 use App\Http\Filters\V1\TicketFilter;
+use App\Http\Resources\V1\TicketResource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,7 @@ class Ticket extends Model
 
     use HasFactory;
 
+    protected $fillable = ['title', 'status', 'description', 'user_id'];
 
     /**
      * Undocumented function
@@ -26,6 +28,6 @@ class Ticket extends Model
     }
 
     public function scopeFilter(Builder $builder, QueryFilter $filters){
-        return $filters->apply($builder);
+        return new TicketResource($filters->apply($builder));
     }
 }
