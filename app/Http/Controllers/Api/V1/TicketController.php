@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Filters\V1\TicketFilter;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Api\V1\ReplaceTicketRequest;
 use App\Http\Requests\Api\V1\UpdateTicketRequest;
 use App\Http\Requests\Api\V1\StoreTicketRequest;
 use App\Http\Resources\V1\TicketResource;
+use App\Http\Filters\V1\TicketFilter;
 use App\Models\Ticket;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TicketController extends ApiController
 {

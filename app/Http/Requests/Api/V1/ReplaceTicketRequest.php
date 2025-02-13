@@ -7,7 +7,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class ReplaceTicketRequest extends FormRequest
 {
-   
+
     public function authorize(): bool
     {
         return true;
@@ -27,7 +27,7 @@ class ReplaceTicketRequest extends FormRequest
             'data.relationships.author.data.id' => 'required|integer'
         ];
 
-        if($this->routeIs('tickets.store')){
+        if ($this->routeIs('tickets.store')) {
             $rules['data.relationships.author.data.id'] = 'required|integer';
         }
 
@@ -36,7 +36,7 @@ class ReplaceTicketRequest extends FormRequest
 
     public function messages()
     {
-        return[
+        return [
             'data.attributes.status' => 'The data.attributes.status value is invalid. Please use A, C, H, or X.'
         ];
     }

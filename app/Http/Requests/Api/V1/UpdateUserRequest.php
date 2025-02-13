@@ -16,11 +16,11 @@ class UpdateUserRequest extends FormRequest
         return true;
     }
 
-   /**
-    * Undocumented function
-    *
-    * @return array
-    */
+    /**
+     * Undocumented function
+     *
+     * @return array
+     */
     public function rules(): array
     {
         return [

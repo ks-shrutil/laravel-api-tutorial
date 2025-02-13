@@ -28,11 +28,11 @@ class UserFactory extends Factory
         ];
     }
 
-   /**
-    * Undocumented function
-    *
-    * @return static
-    */
+    /**
+     * Undocumented function
+     *
+     * @return static
+     */
     public function unverified(): static
     {
         return $this->state(fn(array $attributes) => [
