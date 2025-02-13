@@ -14,6 +14,14 @@ use App\Models\User;
 
 class AuthorTicketsController extends ApiController
 {
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $author_id
+     * @param TicketFilter $filters
+     * @return void
+     */
     public function index($author_id, TicketFilter $filters)
     {
         return TicketResource::collection(
@@ -21,6 +29,14 @@ class AuthorTicketsController extends ApiController
         );
     }
 
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $author_id
+     * @param StoreTicketRequest $request
+     * @return void
+     */
     public function store($author_id, StoreTicketRequest $request)
     {
 
@@ -34,6 +50,16 @@ class AuthorTicketsController extends ApiController
         return Ticket::create($model);
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param ReplaceTicketRequest $request
+     * @param [type] $author_id
+     * @param [type] $ticket_id
+     * @return void
+     */
     public function replace(ReplaceTicketRequest $request, $author_id, $ticket_id)
     {
         try {
@@ -58,6 +84,14 @@ class AuthorTicketsController extends ApiController
     }
 
 
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $author_id
+     * @param [type] $ticket_id
+     * @return void
+     */
     public function destroy($author_id, $ticket_id)
     {
         try {

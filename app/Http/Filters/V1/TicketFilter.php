@@ -11,6 +11,14 @@ class TicketFilter extends QueryFilter
         'createdAt' => 'created_at',
         'updatedAt' => 'updated_at'
     ];
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     public function createdAt($value)
     {
         $dates = explode(',', $value);
@@ -21,16 +29,40 @@ class TicketFilter extends QueryFilter
         return $this->builder->whereDate('created_at', $value);
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     public function include($value)
     {
         return $this->builder->with($value);
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     public function status($value)
     {
         return $this->builder->whereIn('status', explode(',', $value));
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     public function title($value)
     {
         $likeStr = str_replace('*', '%', $value);
@@ -38,6 +70,14 @@ class TicketFilter extends QueryFilter
         return $this->builder->where('title', 'like', $likeStr);
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     public function updatedAt($value)
     {
         $dates = explode(',', $value);

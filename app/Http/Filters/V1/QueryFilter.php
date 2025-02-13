@@ -12,6 +12,11 @@ abstract class QueryFilter
     protected $sortable = [];
 
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -19,6 +24,13 @@ abstract class QueryFilter
 
 
 
+
+    /**
+     * Undocumented function
+     *
+     * @param Builder $builder
+     * @return void
+     */
     public function apply(Builder $builder)
     {
         $this->builder = $builder;
@@ -32,6 +44,14 @@ abstract class QueryFilter
 
         return $builder;
     }
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $arr
+     * @return void
+     */
     protected function filter($arr)
     {
         foreach ($arr as $key => $value) {
@@ -43,6 +63,13 @@ abstract class QueryFilter
     }
 
 
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $value
+     * @return void
+     */
     protected function sort($value)
     {
         $sortAttributes = explode(',', $value);

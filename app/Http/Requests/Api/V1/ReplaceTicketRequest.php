@@ -14,9 +14,9 @@ class ReplaceTicketRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Undocumented function
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
     public function rules(): array
     {
@@ -34,6 +34,13 @@ class ReplaceTicketRequest extends FormRequest
         return $rules;
     }
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function messages()
     {
         return [

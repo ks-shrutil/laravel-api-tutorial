@@ -10,6 +10,13 @@ class ApiController extends Controller
 {
     use ApiResponses;
 
+
+    /**
+     * Undocumented function
+     *
+     * @param string $relationship
+     * @return boolean
+     */
     public function include(string $relationship): bool
     {
         $param = request()->get('include');

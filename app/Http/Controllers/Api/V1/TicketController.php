@@ -16,7 +16,7 @@ class TicketController extends ApiController
     /**
      * Undocumented function
      *
-     * @param Ticket $ticket
+     * @param TicketFilter $filters
      * @return void
      */
     public function index(TicketFilter $filters)
@@ -27,6 +27,12 @@ class TicketController extends ApiController
 
 
 
+    /**
+     * Undocumented function
+     *
+     * @param StoreTicketRequest $request
+     * @return void
+     */
     public function store(StoreTicketRequest $request)
     {
         try {
@@ -50,6 +56,12 @@ class TicketController extends ApiController
 
 
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $ticket_id
+     * @return void
+     */
     public function show($ticket_id)
     {
         try {
@@ -67,6 +79,16 @@ class TicketController extends ApiController
 
     public function update(UpdateTicketRequest $request, Ticket $ticket) {}
 
+
+
+
+    /**
+     * Undocumented function
+     *
+     * @param ReplaceTicketRequest $request
+     * @param [type] $ticket_id
+     * @return void
+     */
     public function replace(ReplaceTicketRequest $request, $ticket_id)
     {
         try {
@@ -89,6 +111,14 @@ class TicketController extends ApiController
     }
 
 
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $ticket_id
+     * @return void
+     */
     public function destroy($ticket_id)
     {
         try {

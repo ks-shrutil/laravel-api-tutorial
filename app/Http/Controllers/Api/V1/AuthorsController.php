@@ -13,6 +13,7 @@ class AuthorsController extends ApiController
     /**
      * Undocumented function
      *
+     * @param AuthorFilter $filters
      * @return void
      */
     public function index(AuthorFilter $filters)
@@ -23,12 +24,25 @@ class AuthorsController extends ApiController
 
 
 
+    /**
+     * Undocumented function
+     *
+     * @param StoreUserRequest $request
+     * @return void
+     */
     public function store(StoreUserRequest $request)
     {
         //
     }
 
 
+
+    /**
+     * Undocumented function
+     *
+     * @param User $author
+     * @return void
+     */
     public function show(User $author)
     {
         if ($this->include('tickets')) {
