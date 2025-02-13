@@ -27,8 +27,12 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return $this->error('Invalid credentials', 401);
+        if (!$user) {
+            return $this->error('User not found', 401);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return $this->error('Incorrect password', 401);
         }
 
         return $this->ok(
@@ -42,6 +46,7 @@ class AuthController extends Controller
             ]
         );
     }
+
 
 
     /**
