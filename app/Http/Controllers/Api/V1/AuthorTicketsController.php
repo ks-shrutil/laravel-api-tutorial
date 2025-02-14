@@ -12,9 +12,14 @@ use App\Http\Requests\Api\V1\UpdateTicketRequest;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Policies\V1\TicketPolicy;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class AuthorTicketsController extends ApiController
 {
+    protected $policyClass = TicketPolicy::class;
+
+
 
     /**
      * Undocumented function
@@ -38,9 +43,19 @@ class AuthorTicketsController extends ApiController
      * @param StoreTicketRequest $request
      * @return void
      */
-    public function store($author_id, StoreTicketRequest $request)
+    public function store(StoreTicketRequest $request, $author_id)
     {
-        return Ticket::create($request->mappedAttributes());
+        try {
+
+            //policy
+            $this->isAble('store', Ticket::class);
+
+            return new TicketResource(Ticket::create($request->mappedAttributes([
+                'author' => 'user_id'
+            ])));
+        } catch (AuthorizationException $exception) {
+            return $this->error('You are not authorized to create that resource', 401);
+        }
     }
 
 
@@ -56,18 +71,18 @@ class AuthorTicketsController extends ApiController
     public function replace(ReplaceTicketRequest $request, $author_id, $ticket_id)
     {
         try {
-            $ticket = Ticket::findOrFail($ticket_id);
+            $ticket = Ticket::where('id', $ticket_id)
+                ->where('user_id', $author_id)
+                ->firstOrFail();
 
-            if ($ticket->user_id == $author_id) {
+            $this->isAble('replace', $ticket);
 
-
-
-
-                $ticket->update($request->mappedAttributes());
-                return new TicketResource($ticket);
-            }
+            $ticket->update($request->mappedAttributes());
+            return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket cannot be found.', 404);
+        } catch (AuthorizationException $exception) {
+            return $this->error('You are not authorized to update that resource', 401);
         }
     }
 
@@ -77,15 +92,18 @@ class AuthorTicketsController extends ApiController
     public function update(UpdateTicketRequest $request, $author_id, $ticket_id)
     {
         try {
-            $ticket = Ticket::findOrFail($ticket_id);
+            $ticket = Ticket::where('id', $ticket_id)
+                ->where('user_id', $author_id)
+                ->firstOrFail();
 
-            if ($ticket->user_id == $author_id) {
+            $this->isAble('update', $ticket);
 
-                $ticket->update($request->mappedAttributes());
-                return new TicketResource($ticket);
-            }
+            $ticket->update($request->mappedAttributes());
+            return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket cannot be found.', 404);
+        } catch (AuthorizationException $exception) {
+            return $this->error('You are not authorized to update that resource', 401);
         }
     }
 
@@ -103,15 +121,20 @@ class AuthorTicketsController extends ApiController
     public function destroy($author_id, $ticket_id)
     {
         try {
-            $ticket = Ticket::findOrFail($ticket_id);
-            if ($ticket->user_id == $author_id) {
-                $ticket->delete();
+            $ticket = Ticket::where('id', $ticket_id)
+                ->where('user_id', $author_id)
+                ->firstOrFail();
 
-                return $this->ok('Ticket successfully deleted.');
-            }
-            return $this->error('Ticket cannot found.', 404);
+            $this->isAble('delete', $ticket);
+            $ticket->delete();
+
+            return $this->ok('Ticket successfully deleted.');
+
+           
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket not found', 404);
+        }catch (AuthorizationException $exception) {
+            return $this->error('You are not authorized to delete that resource', 401);
         }
     }
 }
