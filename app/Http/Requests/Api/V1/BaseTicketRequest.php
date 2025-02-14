@@ -10,7 +10,7 @@ class BaseTicketRequest extends FormRequest
 {
 
 
-    public function mappedAttributes(array $otherAttributes=[])
+    public function mappedAttributes(array $otherAttributes = [])
     {
         $attributeMap = array_merge([
             'data.attributes.title' => 'title',
