@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Permissions\V1\Abilities;
 use Illuminate\Foundation\Http\FormRequest;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -22,8 +23,8 @@ class BaseTicketRequest extends FormRequest
 
         $attributesToUpdate = [];
 
-        foreach($attributeMap as $key => $attribute){
-            if($this->has($key)){
+        foreach ($attributeMap as $key => $attribute) {
+            if ($this->has($key)) {
                 $attributesToUpdate[$attribute] = $this->input($key);
             }
         }

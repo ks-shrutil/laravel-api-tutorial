@@ -27,12 +27,10 @@ class TicketPolicy
         return false;
     }
 
-    public function replace(User $user, Ticket $ticket)
+    public function replace(User $user)
     {
-        if ($user->tokenCan(Abilities::ReplaceTicket)) {
-            return true;
-        }
-        return false;
+        return $user->tokenCan(Abilities::ReplaceTicket) ||
+                $user->tokenCan(Abilities::CreateOwnTicket);
     }
 
     public function store(User $user, Ticket $ticket)
