@@ -41,6 +41,9 @@ class TicketController extends ApiController
     {
         try {
             $user = User::find($request->input('data.relationships.author.data.id'));
+
+            //policy
+            $this->isAble('store', null);
         } catch (ModelNotFoundException $exception) {
             return $this->ok('User not found', [
                 'error' => 'The provided user id does not exists'
@@ -108,7 +111,10 @@ class TicketController extends ApiController
         try {
             $ticket = Ticket::findOrFail($ticket_id);
 
+            //policy
+            $this->isAble('replace', null);
 
+            $ticket->update($request->mappedAttributes());
 
             return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
@@ -129,6 +135,9 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrFail($ticket_id);
+            //policy
+            $this->isAble('delete', null);
+
             $ticket->delete();
 
             return $this->ok('Ticket successfully deleted');
