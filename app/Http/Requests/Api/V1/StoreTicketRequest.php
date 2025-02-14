@@ -22,19 +22,21 @@ class StoreTicketRequest extends BaseTicketRequest
     public function rules()
     {
         $authorIdAttr = $this->routeIs('tickets.store') ? 'data.relationships.author.data.id' : 'author';
+        $user = $this->user();
+        $authorRule = 'required|integer|exists:users,id';
 
         return $rules = [
             'data.attributes.title' => 'sometimes|string',
             'data.attributes.description' => 'sometimes|string',
             'data.attributes.status' => 'sometimes|string|in:A,C,H,X',
-           $authorIdAttr => 'required|integer|exists:users,id'
+            $authorIdAttr => $authorRule . '|size:' . $user->id
         ];
 
         $user = $this->user();
 
 
-        if ($user->tokenCan(Abilities::CreateOwnTicket)) {
-            $rules[$authorIdAttr] .= '|size:' . $user->id;
+        if ($user->tokenCan(Abilities::CreateTicket)) {
+            $rules[$authorIdAttr] =  $authorRule;
         }
 
 
@@ -44,10 +46,10 @@ class StoreTicketRequest extends BaseTicketRequest
 
     protected function prepareForValidation()
     {
-        if($this->routeIs('authors.tickets.store')){
+        if ($this->routeIs('authors.tickets.store')) {
             $this->merge([
                 'author' => $this->route('author')
-            ]);  
+            ]);
         }
     }
 }
