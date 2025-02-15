@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Exceptions\Handler;
 
 class AppServiceProvider extends ServiceProvider
 {

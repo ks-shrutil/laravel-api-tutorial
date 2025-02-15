@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\Access\AuthorizationException;
+use App\Http\Requests\Api\V1\ReplaceUserRequest;
 use App\Http\Requests\Api\V1\UpdateUserRequest;
 use App\Http\Requests\Api\V1\StoreUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Http\Filters\V1\AuthorFilter;
-use App\Http\Requests\Api\V1\ReplaceUserRequest;
-use App\Models\User;
 use App\Policies\V1\UserPolicy;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\User;
 
 class UserController extends ApiController
 {
@@ -107,7 +107,7 @@ class UserController extends ApiController
     }
 
 
-    public function destroy( $user_id)
+    public function destroy($user_id)
     {
         try {
             $user = User::findOrFail($user_id);

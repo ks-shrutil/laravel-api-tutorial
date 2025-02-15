@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use Illuminate\Foundation\Http\FormRequest;
 use App\Permissions\V1\Abilities;
 use Auth;
-use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTicketRequest extends BaseTicketRequest
 {

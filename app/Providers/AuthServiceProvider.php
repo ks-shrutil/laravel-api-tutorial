@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Ticket;
-use App\Models\User;
+use Illuminate\Support\ServiceProvider;
 use App\Policies\V1\TicketPolicy;
 use App\Policies\V1\UserPolicy;
-use Illuminate\Support\ServiceProvider;
+use App\Models\Ticket;
+use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
     }
 
 
-    protected $policies =[
+    protected $policies = [
         Ticket::class => TicketPolicy::class,
         User::class => UserPolicy::class
     ];

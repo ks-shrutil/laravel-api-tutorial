@@ -6,10 +6,10 @@ use App\Http\Requests\Api\LoginUserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Permissions\V1\Abilities;
 use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Permissions\V1\Abilities;
 
 class AuthController extends Controller
 {
@@ -57,7 +57,7 @@ class AuthController extends Controller
         );
     }
 
-   
+
     /**
      * Logout
      * 

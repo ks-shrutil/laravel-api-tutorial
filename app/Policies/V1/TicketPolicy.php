@@ -2,10 +2,10 @@
 
 namespace App\Policies\V1;
 
-use App\Models\Ticket;
-use App\Models\User;
 use App\Permissions\V1\Abilities;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\Ticket;
+use App\Models\User;
 
 class TicketPolicy
 {
@@ -30,13 +30,12 @@ class TicketPolicy
     public function replace(User $user)
     {
         return $user->tokenCan(Abilities::ReplaceTicket);
-                
     }
 
     public function store(User $user, Ticket $ticket)
     {
         return ($user->tokenCan(Abilities::CreateTicket)) ||
-        $user->tokenCan(Abilities::CreateOwnTicket);
+            $user->tokenCan(Abilities::CreateOwnTicket);
     }
 
 

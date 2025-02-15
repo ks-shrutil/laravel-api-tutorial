@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use App\Permissions\V1\Abilities;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Permissions\V1\Abilities;
 use PhpParser\Node\Expr\FuncCall;
 
 class BaseUserRequest extends FormRequest

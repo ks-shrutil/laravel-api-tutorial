@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use App\Permissions\V1\Abilities;
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Permissions\V1\Abilities;
 use PhpParser\Node\Expr\FuncCall;
+use Auth;
 
 
 
@@ -84,12 +84,12 @@ class StoreTicketRequest extends BaseTicketRequest
             ]
         ];
 
-        if($this->routeIs('tickets.store')){
+        if ($this->routeIs('tickets.store')) {
             $documentation['data.relationships.author.data.id'] = [
                 'description' => 'The author assigned to the ticket.',
                 'example' => 'No-example'
             ];
-        }else{
+        } else {
             $documentation['author'] = [
                 'description' => 'The author assigned to the ticket.',
                 'example' => 'No-example'
