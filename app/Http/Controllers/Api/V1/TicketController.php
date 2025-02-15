@@ -17,11 +17,18 @@ class TicketController extends ApiController
 {
 
     protected $policyClass = TicketPolicy::class;
+
+
+
+
     /**
-     * Undocumented function
+     *Create a Tickets
      *
-     * @param TicketFilter $filters
-     * @return void
+     * Creates a new Ticket. Users can only create tickets fot themselves. Manager can create tickets for any user.
+     * 
+     *@group Managing Tickets
+     *
+     * 
      */
     public function index(TicketFilter $filters)
     {
@@ -101,14 +108,13 @@ class TicketController extends ApiController
      */
     public function destroy(Ticket $ticket)
     {
-            if ($this->isAble('delete', null)) {
+        if ($this->isAble('delete', null)) {
 
-                $ticket->delete();
+            $ticket->delete();
 
-                return $this->ok('Ticket successfully deleted');
-            }
+            return $this->ok('Ticket successfully deleted');
+        }
 
-            return $this->notAuthorized('You are not authorized to delete that user.');
-        
+        return $this->notAuthorized('You are not authorized to delete that user.');
     }
 }

@@ -17,10 +17,19 @@ class AuthController extends Controller
     use ApiResponses;
 
     /**
-     * Undocumented function
-     *
-     * @param LoginUserRequest $request
-     * @return void
+     * Login
+     * 
+     * Authenticates the user and returns the user's API token.
+     * 
+     * @unauthenticated
+     * @group Authentication
+     * @response 200{
+     * "data": {
+     *    "token": "5|kTMhd7W7H8DgzK401FVozMtoI0OaumukxwR1kCS77b9daea1"
+     *},
+     *"message": "Authenticated",
+     *"status": 200
+     *}
      */
     public function login(LoginUserRequest $request)
     {
@@ -41,18 +50,21 @@ class AuthController extends Controller
             [
                 'token' => $user->createToken(
                     'API token for ' . $user->email,
-                     Abilities::getAbilities($user),
+                    Abilities::getAbilities($user),
                     now()->addMonth()
                 )->plainTextToken
             ]
         );
     }
 
+   
     /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
+     * Logout
+     * 
+     * Signs out the user and destroy's the API token.
+     * 
+     * @group Authentication
+     * @response 200
      */
     public function logout(Request $request)
     {
