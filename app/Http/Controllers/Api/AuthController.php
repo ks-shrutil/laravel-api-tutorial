@@ -48,8 +48,6 @@ class AuthController extends Controller
         );
     }
 
-
-
     /**
      * Undocumented function
      *
